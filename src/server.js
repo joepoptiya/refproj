@@ -8,6 +8,8 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 
 app.get("/api/v1/todos", (req, res) => {
+  console.log(req.headers);
+
   return res.json({
     todos: [
       {
