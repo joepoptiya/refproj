@@ -2,14 +2,17 @@ import React, { useEffect } from "react";
 import axios from "axios";
 
 export default function ListOfTodo({ token }) {
+  const service_base_url = process.env.REACT_APP_SERVICE_BASE_URL;
   useEffect(() => {
     console.log("ListOfTodo");
-    fetchData(token);
+    if (token) {
+      fetchData(token);
+    }
   }, [token]);
 
   const fetchData = async (token) => {
     console.log("fetchData");
-    const res = await axios.get("http://localhost:5040/api/v1/todos", {
+    const res = await axios.get(`${service_base_url}/api/v1/todos`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
